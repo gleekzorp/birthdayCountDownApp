@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
+import Clock from './clock';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -30,12 +31,21 @@ export default class BirthdayForm extends Component {
     render() {
         return (
             <div>
-                <h1>Birthday Form Component</h1>
-                <DatePicker
-                    selected={this.state.startDate}
-                    onChange={this.handleChange}
-                />
-                <a onClick={this.handleGenerate}>Generate Countdown</a>
+                {
+                    this.state.formCompleted ? 
+                        <div>
+                            <Clock birthdayFormState={this.state} />
+                        </div>
+                    :
+                        <div>
+                            <h1>Birthday Form Component</h1>
+                            <DatePicker
+                                selected={this.state.startDate}
+                                onChange={this.handleChange}
+                            />
+                            <a onClick={this.handleGenerate}>Generate Countdown</a>
+                        </div>
+                }
             </div>
         )
     }
